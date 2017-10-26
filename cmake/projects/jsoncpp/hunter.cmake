@@ -15,6 +15,17 @@ hunter_add_version(
     PACKAGE_NAME
     jsoncpp
     VERSION
+    "0.6.0-rc2"
+    URL
+    "http://jenkins-clone.v4core.os-n3.hw:8081/repository/hunter-projects/jsoncpp-0.6.0-rc2.tar.bz2"
+    SHA1
+    3b86f0589c84dff5082454e2d539dce7bc65db86
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    jsoncpp
+    VERSION
     "1.8.0"
     URL
     "https://github.com/open-source-parsers/jsoncpp/archive/1.8.0.tar.gz"
