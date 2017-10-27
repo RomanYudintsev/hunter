@@ -83,7 +83,6 @@ string(COMPARE NOTEQUAL "${_hunter_LOCAL_DIR}" "" _hunter_localdir_consume)
       hunter_pack_local_dir(
           LOCAL_DIR "${_hunter_LOCAL_DIR}"
           VERSION _hunter_VERSION
-          LOCALE_DIR_SOURCE_SUBDIR "${_hunter_LOCAL_DIR}"
       )
   endif()
 
