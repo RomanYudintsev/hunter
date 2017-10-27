@@ -64,19 +64,8 @@ hunter_cmake_args(
         JSONCPP_WITH_CMAKE_PACKAGE=ON
 )
 
-get_cmake_property(_variableNames VARIABLES)
-foreach (_variableName ${_variableNames})
-    message(STATUS "${_variableName}=${${_variableName}}")
-endforeach()
-
-set(one PACKAGE_NAME)
-cmake_parse_arguments(TEST_HUNTER "" "${one}" ${ARGV})
-set(TEST_HUNTER_PACKAGE_VERSION "${HUNTER_${HUNTER_PACKAGE_NAME}_VERSION}")
-
-message(STATUS ${TEST_HUNTER_PACKAGE_VERSION})
-message(STATUS ${HUNTER_PACKAGE_NAME})
-
-string(COMPARE EQUAL "${TEST_HUNTER_PACKAGE_VERSION}" "FROM_LOCAL_PATH" test_hunter_package_version)
+message(STATUS ${HUNTER_jsoncpp_VERSION})
+string(COMPARE EQUAL "${HUNTER_jsoncpp_VERSION}" "FROM_LOCAL_PATH" test_hunter_package_version)
 
 if(test_hunter_package_version)
   hunter_pick_scheme(DEFAULT local_cmake)
