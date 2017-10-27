@@ -65,7 +65,7 @@ hunter_cmake_args(
 )
 
 set(TEST_HUNTER_PACKAGE_VERSION "${HUNTER_${HUNTER_PACKAGE_NAME}_VERSION}")
-string(COMPARE EQUAL "${TEST_HUNTER_PACKAGE_VERSION}" "MAY_BE_LOCAL" test_hunter_package_version)
+string(COMPARE EQUAL "${TEST_HUNTER_PACKAGE_VERSION}" "FROM_LOCAL_PATH" test_hunter_package_version)
 
 if(test_hunter_package_version)
   hunter_pick_scheme(DEFAULT local_cmake)

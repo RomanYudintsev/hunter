@@ -20,7 +20,7 @@ include(hunter_test_string_not_empty)
 include(hunter_user_error)
 
 # Note: 'hunter_find_licenses' should be called before each return point
-function(hunter_download)
+function(hunter_local)
   set(one PACKAGE_NAME PACKAGE_COMPONENT PACKAGE_INTERNAL_DEPS_ID)
   set(multiple PACKAGE_UNRELOCATABLE_TEXT_FILES)
 
