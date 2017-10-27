@@ -79,20 +79,11 @@ macro(hunter_config)
 
 string(COMPARE NOTEQUAL "${_hunter_LOCAL_DIR}" "" _hunter_localdir_consume)
   if(_hunter_localdir_consume)
-    set_property(
-      GLOBAL
-      PROPERTY
-      "HUNTER_${_hunter_current_project}_LOCAL_DIR"
-      "${_hunter_LOCAL_DIR}"
-    )
-
-    set_property(
-      GLOBAL
-      APPEND
-      PROPERTY
-      HUNTER_LOCAL_PROJECTS
-      "${_hunter_current_project}"
-    )
+      hunter_pack_local_dir(
+          LOCAL_DIR "${_hunter_LOCAL_DIR}"
+          VERSION _hunter_VERSION
+          LOCALE_DIR_SOURCE_SUBDIR "${_hunter_LOCAL_DIR}"
+      )
   endif()
 
   if(_hunter_VERSION)
