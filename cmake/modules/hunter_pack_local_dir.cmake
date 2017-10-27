@@ -55,4 +55,5 @@ function(hunter_pack_local_dir)
   endif()
 
   set("${x_VERSION}" "FROM_LOCAL_PATH" PARENT_SCOPE)
+  set("${x_LOCAL_DIR}" "${LOCAL_DIR}" PARENT_SCOPE)
 endfunction()
