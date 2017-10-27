@@ -29,10 +29,14 @@ function(hunter_local)
   # -> HUNTER_PACKAGE_COMPONENT
   # -> HUNTER_PACKAGE_INTERNAL_DEPS_ID
   # -> HUNTER_PACKAGE_UNRELOCATABLE_TEXT_FILES
-
   if(HUNTER_UNPARSED_ARGUMENTS)
     hunter_internal_error("Unparsed: ${HUNTER_UNPARSED_ARGUMENTS}")
   endif()
+
+get_cmake_property(_variableNames VARIABLES)
+foreach (_variableName ${_variableNames})
+    message(STATUS "${_variableName}=${${_variableName}}")
+endforeach()
 
   hunter_test_string_not_empty("${HUNTER_SELF}")
 
