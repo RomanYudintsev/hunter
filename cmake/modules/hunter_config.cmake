@@ -18,7 +18,7 @@ macro(hunter_config)
         "error.unexpected.hunter_config"
     )
   endif()
-  set(_hunter_one_value VERSION GIT_SUBMODULE GIT_SUBMODULE_DIR)
+  set(_hunter_one_value VERSION GIT_SUBMODULE GIT_SUBMODULE_DIR LOCAL_DIR)
   set(_hunter_multiple_values CMAKE_ARGS CONFIGURATION_TYPES)
   cmake_parse_arguments(
       _hunter
@@ -77,6 +77,24 @@ macro(hunter_config)
     )
   endif()
 
+string(COMPARE NOTEQUAL "${_hunter_LOCAL_DIR}" "" _hunter_localdir_consume)
+  if(_hunter_localdir_consume)
+    set_property(
+      GLOBAL
+      PROPERTY
+      "HUNTER_${_hunter_current_project}_LOCAL_DIR"
+      "${_hunter_LOCAL_DIR}"
+    )
+
+    set_property(
+      GLOBAL
+      APPEND
+      PROPERTY
+      HUNTER_LOCAL_PROJECTS
+      "${_hunter_current_project}"
+    )
+  endif()
+
   if(_hunter_VERSION)
     set(HUNTER_${_hunter_current_project}_VERSION ${_hunter_VERSION})
     set(HUNTER_${_hunter_current_project}_CMAKE_ARGS ${_hunter_CMAKE_ARGS})
@@ -87,4 +105,5 @@ macro(hunter_config)
   else()
     hunter_user_error("Expected VERSION option for 'hunter_config' command")
   endif()
+
 endmacro()
