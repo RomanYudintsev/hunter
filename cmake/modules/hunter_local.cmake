@@ -72,8 +72,7 @@ function(hunter_download)
 
   set(HUNTER_PACKAGE_VERSION "${HUNTER_${h_name}_VERSION}")
   set(ver "${HUNTER_PACKAGE_VERSION}")
-  set(HUNTER_PACKAGE_URL "${HUNTER_${h_name}_URL}")
-  set(HUNTER_PACKAGE_SHA1 "${HUNTER_${h_name}_SHA1}")
+
   set(
       HUNTER_PACKAGE_CONFIGURATION_TYPES
       "${HUNTER_${h_name}_CONFIGURATION_TYPES}"
@@ -82,8 +81,6 @@ function(hunter_download)
   if(no_types)
     set(HUNTER_PACKAGE_CONFIGURATION_TYPES ${HUNTER_CACHED_CONFIGURATION_TYPES})
   endif()
-
-  set(HUNTER_PACKAGE_PROTECTED_SOURCES "${HUNTER_${h_name}_PROTECTED_SOURCES}")
 
   hunter_test_string_not_empty("${HUNTER_PACKAGE_CONFIGURATION_TYPES}")
 
@@ -208,9 +205,6 @@ function(hunter_download)
     return()
   endif()
 
-  hunter_lock_directory(
-      "${HUNTER_PACKAGE_DOWNLOAD_DIR}" HUNTER_ALREADY_LOCKED_DIRECTORIES
-  )
   hunter_lock_directory(
       "${HUNTER_CONFIG_ID_PATH}" HUNTER_ALREADY_LOCKED_DIRECTORIES
   )
@@ -374,9 +368,6 @@ function(hunter_download)
   if(hunter_has_component)
     hunter_status_debug("Component: ${HUNTER_PACKAGE_COMPONENT}")
   endif()
-  hunter_status_debug("Download scheme: ${HUNTER_DOWNLOAD_SCHEME}")
-  hunter_status_debug("Url: ${HUNTER_PACKAGE_URL}")
-  hunter_status_debug("SHA1: ${HUNTER_PACKAGE_SHA1}")
   if(HUNTER_PACKAGE_SCHEME_INSTALL)
     hunter_status_debug(
         "Configuration types: ${HUNTER_PACKAGE_CONFIGURATION_TYPES}"
