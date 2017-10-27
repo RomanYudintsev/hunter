@@ -65,6 +65,10 @@ hunter_cmake_args(
 )
 
 set(TEST_HUNTER_PACKAGE_VERSION "${HUNTER_${HUNTER_PACKAGE_NAME}_VERSION}")
+
+message(${TEST_HUNTER_PACKAGE_VERSION})
+message(${HUNTER_PACKAGE_NAME})
+
 string(COMPARE EQUAL "${TEST_HUNTER_PACKAGE_VERSION}" "FROM_LOCAL_PATH" test_hunter_package_version)
 
 if(test_hunter_package_version)
