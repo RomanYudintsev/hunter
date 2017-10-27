@@ -54,5 +54,5 @@ function(hunter_pack_local_dir)
     endif()
   endif()
 
-  set("${x_VERSION}" "MAY_BE_LOCAL" PARENT_SCOPE)
+  set("${x_VERSION}" "FROM_LOCAL_PATH" PARENT_SCOPE)
 endfunction()

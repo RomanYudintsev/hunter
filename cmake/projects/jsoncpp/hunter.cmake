@@ -6,6 +6,7 @@
 include(hunter_add_version)
 include(hunter_cacheable)
 include(hunter_download)
+include(hunter_local)
 include(hunter_pick_scheme)
 include(hunter_cmake_args)
 
@@ -55,9 +56,6 @@ hunter_add_version(
     4fcb0e3275a1391856fc6ae21e36dce866b19393
 )
 
-# Pick a download scheme
-hunter_pick_scheme(DEFAULT url_sha1_cmake) # use scheme for cmake projects
-
 hunter_cmake_args(
     jsoncpp
     CMAKE_ARGS
@@ -66,5 +64,16 @@ hunter_cmake_args(
         JSONCPP_WITH_CMAKE_PACKAGE=ON
 )
 
-hunter_cacheable(jsoncpp)
-hunter_download(PACKAGE_NAME jsoncpp)
+set(TEST_HUNTER_PACKAGE_VERSION "${HUNTER_${HUNTER_PACKAGE_NAME}_VERSION}")
+string(COMPARE EQUAL "${TEST_HUNTER_PACKAGE_VERSION}" "MAY_BE_LOCAL" test_hunter_package_version)
+
+if(test_hunter_package_version)
+  hunter_pick_scheme(DEFAULT local_cmake)
+  hunter_local(PACKAGE_NAME jsoncpp)
+else(test_hunter_package_version)
+  # Pick a download scheme
+  hunter_pick_scheme(DEFAULT url_sha1_cmake) # use scheme for cmake projects
+
+  hunter_cacheable(jsoncpp)
+  hunter_download(PACKAGE_NAME jsoncpp)
+endif()
