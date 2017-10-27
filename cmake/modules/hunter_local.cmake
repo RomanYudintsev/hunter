@@ -246,48 +246,6 @@ function(hunter_download)
       "${HUNTER_ARGS_FILE}"
   )
 
-  # Check if package can be loaded from cache
-  hunter_load_from_cache()
-
-  if(HUNTER_CACHE_RUN)
-    # No need for licenses here (no 'hunter_find_licenses' call)
-    return()
-  endif()
-
-  if(EXISTS "${HUNTER_PACKAGE_DONE_STAMP}")
-    hunter_status_debug("Package installed from cache: ${HUNTER_PACKAGE_NAME}")
-    if(hunter_has_component)
-      hunter_status_debug("Component: ${HUNTER_PACKAGE_COMPONENT}")
-    endif()
-
-    # In:
-    # * HUNTER_PACKAGE_HOME_DIR
-    # * HUNTER_PACKAGE_LICENSE_SEARCH_DIR
-    # * HUNTER_PACKAGE_NAME
-    # * HUNTER_PACKAGE_SCHEME_UNPACK
-    # * HUNTER_PACKAGE_SHA1
-    # Out:
-    # * ${HUNTER_PACKAGE_NAME}_LICENSES (parent scope)
-    hunter_find_licenses()
-
-    return()
-  endif()
-
-  if(HUNTER_PACKAGE_PROTECTED_SOURCES)
-    # -> HUNTER_PACKAGE_HTTP_USERNAME
-    # -> HUNTER_PACKAGE_HTTP_PASSWORD
-    hunter_read_http_credentials()
-
-    string(COMPARE EQUAL "${HUNTER_PACKAGE_HTTP_USERNAME}" "" name_is_empty)
-    string(COMPARE EQUAL "${HUNTER_PACKAGE_HTTP_PASSWORD}" "" pass_is_empty)
-
-    if(name_is_empty OR pass_is_empty)
-      hunter_user_error(
-          "Credentials for '${HUNTER_PACKAGE_NAME}' are not defined"
-      )
-    endif()
-  endif()
-
   file(REMOVE_RECURSE "${HUNTER_PACKAGE_BUILD_DIR}")
   file(REMOVE "${HUNTER_PACKAGE_HOME_DIR}/CMakeLists.txt")
   file(REMOVE "${HUNTER_DOWNLOAD_TOOLCHAIN}")
