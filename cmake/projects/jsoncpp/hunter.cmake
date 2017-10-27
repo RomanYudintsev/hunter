@@ -64,8 +64,8 @@ hunter_cmake_args(
         JSONCPP_WITH_CMAKE_PACKAGE=ON
 )
 
-set(one PACKAGE_NAME PACKAGE_COMPONENT PACKAGE_INTERNAL_DEPS_ID)
-cmake_parse_arguments(TEST_HUNTER "" "${one}")
+set(one PACKAGE_NAME)
+cmake_parse_arguments(TEST_HUNTER "" "${one}" ${ARGV})
 set(TEST_HUNTER_PACKAGE_VERSION "${HUNTER_${HUNTER_PACKAGE_NAME}_VERSION}")
 
 message(STATUS ${TEST_HUNTER_PACKAGE_VERSION})
