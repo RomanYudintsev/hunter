@@ -78,7 +78,7 @@ macro(hunter_config)
   endif()
 
   string(COMPARE NOTEQUAL "${_hunter_LOCAL_DIR}" "" _hunter_localdir_consume)
-  message(STATUS _hunter_localdir_consume)
+  message(STATUS ${_hunter_localdir_consume})
   if(_hunter_localdir_consume)
     set(HUNTER_${_hunter_current_project}_LOCAL_DIR "${_hunter_LOCAL_DIR}")
     set(_hunter_VERSION, "FROM_LOCAL_PATH")
