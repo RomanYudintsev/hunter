@@ -80,10 +80,8 @@ macro(hunter_config)
 
   string(COMPARE NOTEQUAL "${_hunter_LOCAL_DIR}" "" _hunter_localdir_consume)
   if(_hunter_localdir_consume)
-      hunter_pack_local_dir(
-          LOCAL_DIR "${_hunter_LOCAL_DIR}"
-          VERSION _hunter_VERSION
-      )
+      set(HUNTER_${_hunter_current_project}_LOCAL_DIR ${_hunter_LOCAL_DIR})
+      set(_hunter_VERSION, "FROM_LOCAL_PATH")
   endif()
 
   if(_hunter_VERSION)
@@ -93,9 +91,6 @@ macro(hunter_config)
         HUNTER_${_hunter_current_project}_CONFIGURATION_TYPES
         ${_hunter_CONFIGURATION_TYPES}
     )
-    if (_hunter_LOCAL_DIR)
-      set(HUNTER_${_hunter_current_project}_LOCAL_DIR ${_hunter_LOCAL_DIR})
-    endif()
   else()
     hunter_user_error("Expected VERSION option for 'hunter_config' command")
   endif()
