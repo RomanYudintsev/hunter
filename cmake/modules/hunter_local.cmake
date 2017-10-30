@@ -111,7 +111,7 @@ endforeach()
   set(HUNTER_PACKAGE_SETUP_DIR "${HUNTER_SELF}/cmake/projects/${HUNTER_PACKAGE_NAME}")
   set(HUNTER_GLOBAL_SCRIPT_DIR "${HUNTER_SELF}/scripts")
   set(HUNTER_PACKAGE_SCRIPT_DIR "${HUNTER_PACKAGE_SETUP_DIR}/scripts/")
-  set(HUNTER_PACKAGE_HOME_DIR "${HUNTER_LOCAL_DIR}/Build")
+  set(HUNTER_PACKAGE_HOME_DIR "${PACKAGE_LOCAL_DIR}/Build")
   set(
       HUNTER_PACKAGE_HOME_DIR
       "${HUNTER_PACKAGE_HOME_DIR}/${HUNTER_PACKAGE_NAME}"
@@ -193,7 +193,7 @@ endforeach()
   endif()
 
   hunter_lock_directory(
-      "${HUNTER_LOCAL_DIR}" HUNTER_ALREADY_LOCKED_DIRECTORIES
+      "${PACKAGE_LOCAL_DIR}" HUNTER_ALREADY_LOCKED_DIRECTORIES
   )
   if(hunter_has_binary_dir)
     hunter_lock_directory(
