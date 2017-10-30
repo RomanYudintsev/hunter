@@ -92,8 +92,8 @@ string(COMPARE NOTEQUAL "${_hunter_LOCAL_DIR}" "" _hunter_localdir_consume)
     set(
         HUNTER_${_hunter_current_project}_CONFIGURATION_TYPES
         ${_hunter_CONFIGURATION_TYPES}
-    set(HUNTER_${_hunter_current_project}_LOCAL_DIR ${_hunter_LOCAL_DIR})
     )
+    set(HUNTER_${_hunter_current_project}_LOCAL_DIR ${_hunter_LOCAL_DIR})
   else()
     hunter_user_error("Expected VERSION option for 'hunter_config' command")
   endif()
