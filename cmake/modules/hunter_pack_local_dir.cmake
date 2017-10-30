@@ -37,7 +37,7 @@ function(hunter_pack_local_dir)
   set(archive "${archives_directory}/${PACKAGE_NAME}.tar.bz2")
 
   hunter_status_debug("Creating archive '${archive}'")
-  hunter_pack_directory( "${LOCAL_DIR}" "${archives_directory}" archive_sha1)
+  hunter_pack_directory( "${x_LOCAL_DIR}" "${archives_directory}" archive_sha1)
 
   file(RENAME "${archives_directory}/cache.tar.bz2" "${archive}")
 
