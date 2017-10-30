@@ -5,7 +5,6 @@ include(CMakeParseArguments) # cmake_parse_arguments
 
 include(hunter_fatal_error)
 include(hunter_pack_git_submodule)
-include(hunter_pack_local_dir)
 include(hunter_unsetvar)
 include(hunter_user_error)
 include(hunter_parse_cmake_args_for_keyword)
