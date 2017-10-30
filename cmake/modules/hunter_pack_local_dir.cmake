@@ -32,28 +32,37 @@ function(hunter_pack_local_dir)
     hunter_internal_error("LOCAL_DIR is empty")
   endif()
 
-  find_package(Git)
-  if(${GIT_EXECUTABLE} AND GIT_VERSION_STRING VERSION_LESS "2.5.0")
-    hunter_status_debug("Using git executable: ${GIT_EXECUTABLE}")
+  set(archives_directory "${CMAKE_CURRENT_BINARY_DIR}/_locals/Hunter/archives")
+  set(archive "${archives_directory}/${PACKAGE_NAME}.tar.bz2")
 
-    set(cmd "${GIT_EXECUTABLE}" status -- .)
-    execute_process(
-        COMMAND ${cmd}
-        WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
-        RESULT_VARIABLE result
-        OUTPUT_VARIABLE output
-        ERROR_VARIABLE error
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-        ERROR_STRIP_TRAILING_WHITESPACE
-    )
+  hunter_status_debug("Creating archive '${archive}'")
+  hunter_pack_directory( "${LOCAL_DIR}" "${archives_directory}" archive_sha1)
 
-    if(NOT result EQUAL 0)
-        hunter_internal_error(
-          "Command failed: ${cmd} (${result}, ${output}, ${error})"
-        )
-    endif()
-  endif()
+  file(RENAME "${archives_directory}/cache.tar.bz2", "${archive}")
 
-  set("${x_VERSION}" "FROM_LOCAL_PATH" PARENT_SCOPE)
-  set("${x_LOCAL_DIR}" "${LOCAL_DIR}" PARENT_SCOPE)
+  set(version_file "${archives_directory}/${PACKAGE_NAME}-version.cmake")
+  set(download_file "${archives_directory}/${PACKAGE_NAME}-download.cmake")
+
+  file(SHA1 "${archive}" PACKAGE_SHA1)
+  set(PACKAGE_URL "file://${archive}")
+
+  # Use:
+  # * PACKAGE_NAME
+  configure_file(
+      "${_HUNTER_TEMPLATE_SCHEME_DIR}/package-download.cmake.in"
+      "${download_file}"
+      @ONLY
+  )
+
+  # Use:
+  # * PACKAGE_NAME
+  # * PACKAGE_SHA1
+  # * PACKAGE_URL
+  configure_file(
+      "${_HUNTER_TEMPLATE_SCHEME_DIR}/package-version.cmake.in"
+      "${version_file}"
+      @ONLY
+  )
+
+  set("${x_VERSION}" "${PACKAGE_SHA1}" PARENT_SCOPE)
 endfunction()

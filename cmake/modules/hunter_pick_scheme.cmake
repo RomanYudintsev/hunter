@@ -40,6 +40,7 @@ function(hunter_pick_scheme)
   set(HUNTER_PACKAGE_SCHEME_UNPACK "")
   set(HUNTER_PACKAGE_SCHEME_UNPACK_INSTALL "")
   set(HUNTER_PACKAGE_SCHEME_INSTALL "")
+  set(HUNTER_PACKAGE_SCHEME_LOCAL "")
 
   # set HUNTER_PACKAGE_SCHEME_*
   string(
@@ -74,12 +75,22 @@ function(hunter_pick_scheme)
       is_unpack_bin_install
   )
 
+  string(
+      COMPARE
+      EQUAL
+      "${HUNTER_DOWNLOAD_SCHEME}"
+      "local_cmake"
+      is_local_cmake
+    )
+
   if(is_unpack)
     set(HUNTER_PACKAGE_SCHEME_UNPACK "1")
   elseif(is_download)
     set(HUNTER_PACKAGE_SCHEME_DOWNLOAD "1")
   elseif(is_unpack_install OR is_unpack_bin_install)
     set(HUNTER_PACKAGE_SCHEME_UNPACK_INSTALL "1")
+  elseif(is_local_cmake)
+      set(HUNTER_PACKAGE_SCHEME_LOCAL_CMAKE "1")
   else()
     set(HUNTER_PACKAGE_SCHEME_INSTALL "1")
   endif()
@@ -105,6 +116,11 @@ function(hunter_pick_scheme)
   set(
       HUNTER_PACKAGE_SCHEME_INSTALL
       "${HUNTER_PACKAGE_SCHEME_INSTALL}"
+      PARENT_SCOPE
+  )
+  set(
+      HUNTER_PACKAGE_SCHEME_LOCAL_CMAKE
+      "${HUNTER_PACKAGE_SCHEME_LOCAL_CMAKE}"
       PARENT_SCOPE
   )
 endfunction()
