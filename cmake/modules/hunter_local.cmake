@@ -21,7 +21,7 @@ include(hunter_user_error)
 
 # Note: 'hunter_find_licenses' should be called before each return point
 function(hunter_local)
-  set(one PACKAGE_NAME PACKAGE_COMPONENT PACKAGE_INTERNAL_DEPS_ID)
+  set(one PACKAGE_NAME PACKAGE_COMPONENT PACKAGE_INTERNAL_DEPS_ID PACKAGE_LOCAL_DIR)
   set(multiple PACKAGE_UNRELOCATABLE_TEXT_FILES)
 
   cmake_parse_arguments(HUNTER "" "${one}" "${multiple}" ${ARGV})
@@ -42,8 +42,6 @@ endforeach()
 
   hunter_test_string_not_empty("${HUNTER_INSTALL_PREFIX}")
   hunter_test_string_not_empty("${HUNTER_PACKAGE_NAME}")
-  hunter_test_string_not_empty("${HUNTER_LOCAL_DIR}")
-  hunter_test_string_not_empty("${HUNTER_CACHE_FILE}")
 
   string(COMPARE NOTEQUAL "${HUNTER_BINARY_DIR}" "" hunter_has_binary_dir)
   string(COMPARE NOTEQUAL "${HUNTER_PACKAGE_COMPONENT}" "" hunter_has_component)
@@ -143,24 +141,7 @@ endforeach()
     set(${root_name} "${HUNTER_INSTALL_PREFIX}")
     hunter_status_debug("Install to: ${HUNTER_INSTALL_PREFIX}")
   else()
-    if(hunter_has_component)
-      hunter_internal_error(
-          "Component for non-install package:"
-          " ${HUNTER_PACKAGE_NAME} ${HUNTER_PACKAGE_COMPONENT}"
-      )
-    endif()
-    if(HUNTER_PACKAGE_SCHEME_DOWNLOAD)
-      set(${root_name} "${HUNTER_PACKAGE_SOURCE_DIR}")
-      hunter_status_debug("Download to: ${HUNTER_PACKAGE_SOURCE_DIR}")
-    elseif(HUNTER_PACKAGE_SCHEME_UNPACK)
-      set(${root_name} "${HUNTER_PACKAGE_SOURCE_DIR}")
-      hunter_status_debug("Unpack to: ${HUNTER_PACKAGE_SOURCE_DIR}")
-    elseif(HUNTER_PACKAGE_SCHEME_UNPACK_INSTALL)
-      set(${root_name} "${HUNTER_INSTALL_PREFIX}")
-      hunter_status_debug("Install to: ${HUNTER_PACKAGE_SOURCE_DIR}")
-    else()
-      hunter_internal_error("Invalid scheme")
-    endif()
+    hunter_internal_error("Invalid scheme")
   endif()
 
   set(${root_name} "${${root_name}}" PARENT_SCOPE)
@@ -421,7 +402,6 @@ endforeach()
   set(
       cmd
       "${CMAKE_COMMAND}"
-      "-C${HUNTER_CACHE_FILE}"
       "-C${HUNTER_ARGS_FILE}" # After cache (high priority for user's variable)
       "-H${HUNTER_PACKAGE_HOME_DIR}"
       "-B${HUNTER_PACKAGE_BUILD_DIR}"
