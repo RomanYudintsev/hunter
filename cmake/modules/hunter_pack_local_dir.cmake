@@ -38,7 +38,7 @@ function(hunter_pack_local_dir)
   hunter_status_debug("Creating archive '${archive}'")
   hunter_pack_directory( "${LOCAL_DIR}" "${archives_directory}" archive_sha1)
 
-  file(RENAME "${archives_directory}/cache.tar.bz2", "${archive}")
+  file(RENAME "${archives_directory}/cache.tar.bz2" "${archive}")
 
   set(version_file "${archives_directory}/${PACKAGE_NAME}-version.cmake")
   set(download_file "${archives_directory}/${PACKAGE_NAME}-download.cmake")
