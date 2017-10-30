@@ -34,12 +34,12 @@ function(hunter_pack_local_dir)
   endif()
 
   set(archives_directory "${CMAKE_CURRENT_BINARY_DIR}/_locals/Hunter/archives")
-  set(archive "${archives_directory}/${PACKAGE_NAME}.tar.bz2")
+
 
   hunter_status_debug("Creating archive '${archive}'")
   hunter_pack_directory( "${x_LOCAL_DIR}" "${archives_directory}" archive_sha1)
 
-  file(RENAME "${archives_directory}/cache.tar.bz2" "${archive}")
+  set(archive "${archives_directory}/${archive_sha1}.tar.bz2")
 
   set(version_file "${archives_directory}/${PACKAGE_NAME}-version.cmake")
   set(download_file "${archives_directory}/${PACKAGE_NAME}-download.cmake")
