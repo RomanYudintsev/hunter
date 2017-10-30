@@ -192,6 +192,11 @@ endforeach()
     return()
   endif()
 
+  get_cmake_property(_variableNames VARIABLES)
+  foreach (_variableName ${_variableNames})
+      message(STATUS "${_variableName}=${${_variableName}}")
+  endforeach()
+
   hunter_lock_directory(
       "${PACKAGE_LOCAL_DIR}" HUNTER_ALREADY_LOCKED_DIRECTORIES
   )
