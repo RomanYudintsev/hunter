@@ -83,6 +83,8 @@ macro(hunter_config)
     set(_hunter_VERSION "FROM_LOCAL_PATH")
   endif()
 
+  message(STATUS "in ${_hunter_current_project} hunter_LOCAL_DIR :: "${_hunter_LOCAL_DIR})
+
   if(_hunter_VERSION)
     set(HUNTER_${_hunter_current_project}_VERSION ${_hunter_VERSION})
     set(HUNTER_${_hunter_current_project}_CMAKE_ARGS ${_hunter_CMAKE_ARGS})
