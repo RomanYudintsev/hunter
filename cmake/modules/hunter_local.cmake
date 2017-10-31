@@ -452,31 +452,31 @@ function(hunter_local)
     )
   endif()
 
-  set(
-      cmd
-      "${CMAKE_COMMAND}"
-      --build
-      "${HUNTER_PACKAGE_BUILD_DIR}"
-  )
-  hunter_print_cmd("${HUNTER_PACKAGE_HOME_DIR}" "${cmd}")
+  #set(
+  #    cmd
+  #    "${CMAKE_COMMAND}"
+  #    --build
+  #    "${HUNTER_PACKAGE_BUILD_DIR}"
+  #)
+  #hunter_print_cmd("${HUNTER_PACKAGE_HOME_DIR}" "${cmd}")
 
-  execute_process(
-      COMMAND ${cmd}
-      WORKING_DIRECTORY "${HUNTER_PACKAGE_HOME_DIR}"
-      RESULT_VARIABLE build_result
-      ${logging_params}
-  )
+  #execute_process(
+  #    COMMAND ${cmd}
+  #    WORKING_DIRECTORY "${HUNTER_PACKAGE_HOME_DIR}"
+  #    RESULT_VARIABLE build_result
+  #    ${logging_params}
+  #)
 
-  if(build_result EQUAL 0)
-    hunter_status_print(
-        "Build step successful (dir: ${HUNTER_PACKAGE_HOME_DIR})"
-    )
-  else()
-    hunter_fatal_error(
-        "Build step failed (dir: ${HUNTER_PACKAGE_HOME_DIR}"
-        WIKI "error.external.build.failed"
-    )
-  endif()
+  #if(build_result EQUAL 0)
+  #  hunter_status_print(
+  #      "Build step successful (dir: ${HUNTER_PACKAGE_HOME_DIR})"
+  #  )
+  #else()
+  #  hunter_fatal_error(
+  #      "Build step failed (dir: ${HUNTER_PACKAGE_HOME_DIR}"
+  #      WIKI "error.external.build.failed"
+  #  )
+  #endif()
 
   if(HUNTER_PACKAGE_SCHEME_DOWNLOAD)
     # This scheme not using ExternalProject_Add so there will be no stamps
@@ -486,13 +486,13 @@ function(hunter_local)
 
   hunter_status_debug("Cleaning up build directories...")
 
-  file(REMOVE_RECURSE "${HUNTER_PACKAGE_BUILD_DIR}")
+  #file(REMOVE_RECURSE "${HUNTER_PACKAGE_BUILD_DIR}")
 
-  file(REMOVE "${HUNTER_PACKAGE_HOME_DIR}/CMakeLists.txt")
-  file(REMOVE "${HUNTER_DOWNLOAD_TOOLCHAIN}")
-  file(REMOVE "${HUNTER_ARGS_FILE}")
+  #file(REMOVE "${HUNTER_PACKAGE_HOME_DIR}/CMakeLists.txt")
+  #file(REMOVE "${HUNTER_DOWNLOAD_TOOLCHAIN}")
+  #file(REMOVE "${HUNTER_ARGS_FILE}")
 
-  hunter_status_debug("Clean up done")
+  #hunter_status_debug("Clean up done")
 
   file(WRITE "${HUNTER_PACKAGE_DONE_STAMP}" "")
 
