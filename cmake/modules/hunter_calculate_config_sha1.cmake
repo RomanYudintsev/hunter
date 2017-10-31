@@ -96,7 +96,7 @@ function(hunter_calculate_config_sha1 hunter_self hunter_base user_config)
 
       string(COMPARE NOTEQUAL "${HUNTER_${x}_LOCAL_DIR}" "" from_local)
       if(from_local)
-        file(APPEND "${input_file}" "LOCAL_DIR ${HUNTER_${x}_LOCAL_DIR}")
+        file(APPEND "${input_file}" " LOCAL_DIR ${HUNTER_${x}_LOCAL_DIR}")
       endif()
 
       string(COMPARE NOTEQUAL "${HUNTER_${x}_CMAKE_ARGS}" "" have_args)
