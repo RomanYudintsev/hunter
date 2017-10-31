@@ -39,6 +39,8 @@ function(hunter_local)
       message(STATUS "${_variableName}=${${_variableName}}")
   endforeach()
 
+  message(STATUS "PACKAGE_LOCAL_DIR :: ${PACKAGE_LOCAL_DIR}")
+
   hunter_test_string_not_empty("${HUNTER_SELF}")
   hunter_test_string_not_empty("${HUNTER_INSTALL_PREFIX}")
   hunter_test_string_not_empty("${HUNTER_PACKAGE_NAME}")
