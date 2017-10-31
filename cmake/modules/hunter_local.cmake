@@ -478,13 +478,13 @@ function(hunter_local)
   #  )
   #endif()
 
-  if(HUNTER_PACKAGE_SCHEME_DOWNLOAD)
+  #if(HUNTER_PACKAGE_SCHEME_DOWNLOAD)
     # This scheme not using ExternalProject_Add so there will be no stamps
-  else()
-    hunter_find_stamps("${HUNTER_PACKAGE_BUILD_DIR}")
-  endif()
+  #else()
+  #  hunter_find_stamps("${HUNTER_PACKAGE_BUILD_DIR}")
+  #endif()
 
-  hunter_status_debug("Cleaning up build directories...")
+  #hunter_status_debug("Cleaning up build directories...")
 
   #file(REMOVE_RECURSE "${HUNTER_PACKAGE_BUILD_DIR}")
 
@@ -494,7 +494,7 @@ function(hunter_local)
 
   #hunter_status_debug("Clean up done")
 
-  file(WRITE "${HUNTER_PACKAGE_DONE_STAMP}" "")
+  #file(WRITE "${HUNTER_PACKAGE_DONE_STAMP}" "")
 
   # In:
   # * HUNTER_PACKAGE_HOME_DIR
