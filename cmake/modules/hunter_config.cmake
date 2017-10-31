@@ -84,6 +84,7 @@ macro(hunter_config)
   endif()
 
   message(STATUS "in ${_hunter_current_project} hunter_LOCAL_DIR :: "${_hunter_LOCAL_DIR})
+  message(STATUS "in ${_hunter_current_project} _hunter_VERSION :: "${_hunter_VERSION})
 
   if(_hunter_VERSION)
     set(HUNTER_${_hunter_current_project}_VERSION ${_hunter_VERSION})
