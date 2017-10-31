@@ -39,8 +39,6 @@ function(hunter_local)
       message(STATUS "${_variableName}=${${_variableName}}")
   endforeach()
 
-  message(STATUS "PACKAGE_LOCAL_DIR :: ${PACKAGE_LOCAL_DIR}")
-
   hunter_test_string_not_empty("${HUNTER_SELF}")
   hunter_test_string_not_empty("${HUNTER_INSTALL_PREFIX}")
   hunter_test_string_not_empty("${HUNTER_PACKAGE_NAME}")
@@ -113,7 +111,7 @@ function(hunter_local)
   set(HUNTER_PACKAGE_SETUP_DIR "${HUNTER_SELF}/cmake/projects/${HUNTER_PACKAGE_NAME}")
   set(HUNTER_GLOBAL_SCRIPT_DIR "${HUNTER_SELF}/scripts")
   set(HUNTER_PACKAGE_SCRIPT_DIR "${HUNTER_PACKAGE_SETUP_DIR}/scripts/")
-  set(HUNTER_PACKAGE_HOME_DIR "${PACKAGE_LOCAL_DIR}/Build")
+  set(HUNTER_PACKAGE_HOME_DIR "${HUNTER_PACKAGE_LOCAL_DIR}/Build")
   set(
       HUNTER_PACKAGE_HOME_DIR
       "${HUNTER_PACKAGE_HOME_DIR}/${HUNTER_PACKAGE_NAME}"
@@ -200,7 +198,7 @@ function(hunter_local)
   endforeach()
 
   hunter_lock_directory(
-      "${PACKAGE_LOCAL_DIR}" HUNTER_ALREADY_LOCKED_DIRECTORIES
+      "${HUNTER_PACKAGE_LOCAL_DIR}" HUNTER_ALREADY_LOCKED_DIRECTORIES
   )
   if(hunter_has_binary_dir)
     hunter_lock_directory(

@@ -66,7 +66,7 @@ hunter_cmake_args(
 
 message(STATUS ${HUNTER_jsoncpp_VERSION})
 string(COMPARE EQUAL "${HUNTER_jsoncpp_VERSION}" "FROM_LOCAL_PATH" test_hunter_package_version)
-message(STATUS "HUNTER_jsoncpp_LOCAL_DIR :: "${HUNTER_jsoncpp_LOCAL_DIR})
+message(STATUS "HUNTER_jsoncpp_LOCAL_DIR :: ${HUNTER_jsoncpp_LOCAL_DIR}")
 
 if(test_hunter_package_version)
   hunter_pick_scheme(DEFAULT local_cmake)
