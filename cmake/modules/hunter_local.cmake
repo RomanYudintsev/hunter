@@ -34,11 +34,6 @@ function(hunter_local)
     hunter_internal_error("Unparsed: ${HUNTER_UNPARSED_ARGUMENTS}")
   endif()
 
-  get_cmake_property(_variableNames VARIABLES)
-  foreach (_variableName ${_variableNames})
-      message(STATUS "${_variableName}=${${_variableName}}")
-  endforeach()
-
   hunter_test_string_not_empty("${HUNTER_SELF}")
   hunter_test_string_not_empty("${HUNTER_INSTALL_PREFIX}")
   hunter_test_string_not_empty("${HUNTER_PACKAGE_NAME}")
@@ -452,31 +447,31 @@ function(hunter_local)
     )
   endif()
 
-  #set(
-  #    cmd
-  #    "${CMAKE_COMMAND}"
-  #    --build
-  #    "${HUNTER_PACKAGE_BUILD_DIR}"
-  #)
-  #hunter_print_cmd("${HUNTER_PACKAGE_HOME_DIR}" "${cmd}")
+  set(
+      cmd
+      "${CMAKE_COMMAND}"
+      --build
+      "${HUNTER_PACKAGE_BUILD_DIR}"
+  )
+  hunter_print_cmd("${HUNTER_PACKAGE_HOME_DIR}" "${cmd}")
 
-  #execute_process(
-  #    COMMAND ${cmd}
-  #    WORKING_DIRECTORY "${HUNTER_PACKAGE_HOME_DIR}"
-  #    RESULT_VARIABLE build_result
-  #    ${logging_params}
-  #)
+  execute_process(
+      COMMAND ${cmd}
+      WORKING_DIRECTORY "${HUNTER_PACKAGE_HOME_DIR}"
+      RESULT_VARIABLE build_result
+      ${logging_params}
+  )
 
-  #if(build_result EQUAL 0)
-  #  hunter_status_print(
-  #      "Build step successful (dir: ${HUNTER_PACKAGE_HOME_DIR})"
-  #  )
-  #else()
-  #  hunter_fatal_error(
-  #      "Build step failed (dir: ${HUNTER_PACKAGE_HOME_DIR}"
-  #      WIKI "error.external.build.failed"
-  #  )
-  #endif()
+  if(build_result EQUAL 0)
+    hunter_status_print(
+        "Build step successful (dir: ${HUNTER_PACKAGE_HOME_DIR})"
+    )
+  else()
+    hunter_fatal_error(
+        "Build step failed (dir: ${HUNTER_PACKAGE_HOME_DIR}"
+        WIKI "error.external.build.failed"
+    )
+  endif()
 
   #if(HUNTER_PACKAGE_SCHEME_DOWNLOAD)
     # This scheme not using ExternalProject_Add so there will be no stamps
