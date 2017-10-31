@@ -429,31 +429,31 @@ function(hunter_local)
   hunter_print_cmd("${HUNTER_PACKAGE_HOME_DIR}" "${cmd}")
 
   # Configure and build downloaded project
-  #execute_process(
-  #    COMMAND ${cmd}
-  #    WORKING_DIRECTORY "${HUNTER_PACKAGE_HOME_DIR}"
-  #    RESULT_VARIABLE generate_result
-  #    ${logging_params}
-  #)
+  execute_process(
+      COMMAND ${cmd}
+      WORKING_DIRECTORY "${HUNTER_PACKAGE_HOME_DIR}"
+      RESULT_VARIABLE generate_result
+      ${logging_params}
+  )
 
-  #if(generate_result EQUAL 0)
-  #  hunter_status_debug(
-  #      "Configure step successful (dir: ${HUNTER_PACKAGE_HOME_DIR})"
-  #  )
-  #else()
-  # hunter_fatal_error(
-  #      "Configure step failed (dir: ${HUNTER_PACKAGE_HOME_DIR})"
-  #      WIKI "error.external.build.failed"
-  #  )
-  #endif()
+  if(generate_result EQUAL 0)
+    hunter_status_debug(
+        "Configure step successful (dir: ${HUNTER_PACKAGE_HOME_DIR})"
+    )
+  else()
+    hunter_fatal_error(
+        "Configure step failed (dir: ${HUNTER_PACKAGE_HOME_DIR})"
+        WIKI "error.external.build.failed"
+    )
+  endif()
 
-  #set(
-  #    cmd
-  #    "${CMAKE_COMMAND}"
-  #    --build
-  #    "${HUNTER_PACKAGE_BUILD_DIR}"
-  #)
-  #hunter_print_cmd("${HUNTER_PACKAGE_HOME_DIR}" "${cmd}")
+  set(
+      cmd
+      "${CMAKE_COMMAND}"
+      --build
+      "${HUNTER_PACKAGE_BUILD_DIR}"
+  )
+  hunter_print_cmd("${HUNTER_PACKAGE_HOME_DIR}" "${cmd}")
 
   #execute_process(
   #    COMMAND ${cmd}
@@ -467,10 +467,10 @@ function(hunter_local)
   #      "Build step successful (dir: ${HUNTER_PACKAGE_HOME_DIR})"
   #  )
   #else()
-  #  hunter_fatal_error(
-  #      "Build step failed (dir: ${HUNTER_PACKAGE_HOME_DIR}"
-  #      WIKI "error.external.build.failed"
-  #  )
+  ##  hunter_fatal_error(
+   #     "Build step failed (dir: ${HUNTER_PACKAGE_HOME_DIR}"
+   #     WIKI "error.external.build.failed"
+   # )
   #endif()
 
   #if(HUNTER_PACKAGE_SCHEME_DOWNLOAD)
