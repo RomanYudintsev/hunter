@@ -68,7 +68,9 @@ message(STATUS ${HUNTER_jsoncpp_VERSION})
 string(COMPARE EQUAL "${HUNTER_jsoncpp_VERSION}" "FROM_LOCAL_PATH" test_hunter_package_version)
 message(STATUS "HUNTER_jsoncpp_LOCAL_DIR :: ${HUNTER_jsoncpp_LOCAL_DIR}")
 
-if(NOT test_hunter_package_version)
+if(test_hunter_package_version)
+  set(JSONCPP_ROOT ${HUNTER_jsoncpp_LOCAL_DIR})
+else(test_hunter_package_version)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake) # use scheme for cmake projects
 
