@@ -455,31 +455,31 @@ function(hunter_local)
   )
   hunter_print_cmd("${HUNTER_PACKAGE_HOME_DIR}" "${cmd}")
 
-  #execute_process(
-  #    COMMAND ${cmd}
-  #    WORKING_DIRECTORY "${HUNTER_PACKAGE_HOME_DIR}"
-  #    RESULT_VARIABLE build_result
-  #    ${logging_params}
-  #)
+  execute_process(
+      COMMAND ${cmd}
+      WORKING_DIRECTORY "${HUNTER_PACKAGE_HOME_DIR}"
+      RESULT_VARIABLE build_result
+      ${logging_params}
+  )
 
-  #if(build_result EQUAL 0)
-  #  hunter_status_print(
-  #      "Build step successful (dir: ${HUNTER_PACKAGE_HOME_DIR})"
-  #  )
-  #else()
-  ##  hunter_fatal_error(
-   #     "Build step failed (dir: ${HUNTER_PACKAGE_HOME_DIR}"
-   #     WIKI "error.external.build.failed"
-   # )
-  #endif()
+  if(build_result EQUAL 0)
+    hunter_status_print(
+        "Build step successful (dir: ${HUNTER_PACKAGE_HOME_DIR})"
+    )
+  else()
+    hunter_fatal_error(
+        "Build step failed (dir: ${HUNTER_PACKAGE_HOME_DIR}"
+        WIKI "error.external.build.failed"
+    )
+  endif()
 
-  #if(HUNTER_PACKAGE_SCHEME_DOWNLOAD)
+  if(HUNTER_PACKAGE_SCHEME_DOWNLOAD)
     # This scheme not using ExternalProject_Add so there will be no stamps
-  #else()
-  #  hunter_find_stamps("${HUNTER_PACKAGE_BUILD_DIR}")
-  #endif()
+  else()
+    hunter_find_stamps("${HUNTER_PACKAGE_BUILD_DIR}")
+  endif()
 
-  #hunter_status_debug("Cleaning up build directories...")
+  hunter_status_debug("Cleaning up build directories...")
 
   #file(REMOVE_RECURSE "${HUNTER_PACKAGE_BUILD_DIR}")
 
