@@ -68,13 +68,12 @@ message(STATUS ${HUNTER_jsoncpp_VERSION})
 string(COMPARE EQUAL "${HUNTER_jsoncpp_VERSION}" "FROM_LOCAL_PATH" test_hunter_package_version)
 message(STATUS "HUNTER_jsoncpp_LOCAL_DIR :: ${HUNTER_jsoncpp_LOCAL_DIR}")
 
-if(test_hunter_package_version)
-  target_link_libraries(${LIB} jsoncpp)
-  make_symlink("${JSONCPP_ROOT}/include/json" "${CMAKE_CURRENT_BINARY_DIR}/include/jsoncpp/json")
-else(test_hunter_package_version)
+if(NOT test_hunter_package_version)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake) # use scheme for cmake projects
 
   hunter_cacheable(jsoncpp)
   hunter_download(PACKAGE_NAME jsoncpp)
 endif()
+
+make_symlink("${JSONCPP_ROOT}/include/json" "${CMAKE_CURRENT_BINARY_DIR}/include/jsoncpp/json")
