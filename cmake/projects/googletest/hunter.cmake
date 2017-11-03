@@ -8,6 +8,7 @@ include(hunter_cacheable)
 include(hunter_download)
 include(hunter_pick_scheme)
 include(hunter_cmake_args)
+include(dg_make_symlink)
 
 hunter_add_version(
     PACKAGE_NAME
@@ -63,8 +64,11 @@ string(COMPARE EQUAL "${HUNTER_googletest_VERSION}" "FROM_LOCAL_PATH" test_hunte
 
 if(test_hunter_package_version)
   set(GOOGLETEST_ROOT ${HUNTER_googletest_LOCAL_DIR})
+  set(GOOGLETEST_INCLUDE "${HUNTER_googletest_LOCAL_DIR}/googletest/include/gtest")
 else(test_hunter_package_version)
   hunter_pick_scheme(DEFAULT url_sha1_cmake)
   hunter_cacheable(googletest)
   hunter_download(PACKAGE_NAME googletest PACKAGE_INTERNAL_DEPS_ID 1)
 endif()
+
+make_symlink(${GOOGLETEST_INCLUDE} "${CMAKE_CURRENT_BINARY_DIR}/include/gtest")
