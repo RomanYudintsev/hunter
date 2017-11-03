@@ -63,6 +63,7 @@ hunter_cmake_args(
 string(COMPARE EQUAL "${HUNTER_googletest_VERSION}" "FROM_LOCAL_PATH" test_hunter_package_version)
 
 if(test_hunter_package_version)
+  set(GOOGLETEST_FROM_LOCAL 1)
   set(GOOGLETEST_ROOT ${HUNTER_googletest_LOCAL_DIR})
   set(GOOGLETEST_INCLUDE "${HUNTER_googletest_LOCAL_DIR}/googletest/include/gtest")
 else(test_hunter_package_version)
