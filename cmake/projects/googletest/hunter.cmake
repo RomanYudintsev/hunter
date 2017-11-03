@@ -60,16 +60,17 @@ hunter_cmake_args(
     HUNTER_INSTALL_LICENSE_FILES=${_gtest_license}
 )
 
-string(COMPARE EQUAL "${HUNTER_googletest_VERSION}" "FROM_LOCAL_PATH" test_hunter_package_version)
+string(COMPARE EQUAL "${HUNTER_googletest_VERSION}" "FROM_LOCAL_PATH" hunter_package_local)
 
-if(test_hunter_package_version)
+if(hunter_package_local)
   set(GOOGLETEST_FROM_LOCAL 1)
   set(GOOGLETEST_ROOT ${HUNTER_googletest_LOCAL_DIR})
   set(GOOGLETEST_INCLUDE "${HUNTER_googletest_LOCAL_DIR}/googletest/include/gtest")
-else(test_hunter_package_version)
+else(hunter_package_local)
   hunter_pick_scheme(DEFAULT url_sha1_cmake)
   hunter_cacheable(googletest)
   hunter_download(PACKAGE_NAME googletest PACKAGE_INTERNAL_DEPS_ID 1)
+  set(GOOGLETEST_INCLUDE "${GOOGLETEST_ROOT}/include/gtest")
 endif()
 
 make_symlink(${GOOGLETEST_INCLUDE} "${CMAKE_CURRENT_BINARY_DIR}/include/gtest")
