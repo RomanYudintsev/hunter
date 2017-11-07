@@ -77,3 +77,4 @@ else(hunter_package_local)
 endif()
 
 make_symlink(${GOOGLETEST_INCLUDE} "${CMAKE_CURRENT_BINARY_DIR}/include/gtest")
+target_link_libraries("${LIB}_test" gtest gmock)
