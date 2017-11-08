@@ -74,6 +74,8 @@ else(hunter_package_local)
   hunter_cacheable(googletest)
   hunter_download(PACKAGE_NAME googletest PACKAGE_INTERNAL_DEPS_ID 1)
   set(GOOGLETEST_INCLUDE "${GOOGLETEST_ROOT}/include/gtest")
+  find_package(gtest)
+  find_package(gmock)
 endif()
 
 make_symlink(${GOOGLETEST_INCLUDE} "${CMAKE_CURRENT_BINARY_DIR}/include/gtest")
