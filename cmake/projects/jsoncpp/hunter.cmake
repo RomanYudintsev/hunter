@@ -79,7 +79,7 @@ else(test_hunter_package_version)
 
   hunter_cacheable(jsoncpp)
   hunter_download(PACKAGE_NAME jsoncpp)
-  set(JSONCPP_INCLUDE "${JSONCPP_ROOT}/jsoncpp/include/")
+  set(JSONCPP_INCLUDE "${JSONCPP_ROOT}/include/")
 endif()
 
 make_symlink("${JSONCPP_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/jsoncpp/json")
