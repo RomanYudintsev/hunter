@@ -34,6 +34,18 @@ hunter_add_version(
     5c210a019141a50fe90b6893969ede90fb1b56b1
 )
 
+hunter_add_version(
+    PACKAGE_NAME
+    uniassert
+    VERSION
+    "0.0.2"
+    URL
+    "https://core.2gis.one/hunter/uniassert-0.0.2.tar.bz2"
+    SHA1
+    e593e9935f3c764d53e56e4b61e93a13b516aa5f
+)
+
+
 message(STATUS ${HUNTER_uniassert_VERSION})
 string(COMPARE EQUAL "${HUNTER_uniassert_VERSION}" "FROM_LOCAL_PATH" test_hunter_package_version)
 message(STATUS "HUNTER_uniassert_LOCAL_DIR :: ${HUNTER_uniassert_LOCAL_DIR}")
