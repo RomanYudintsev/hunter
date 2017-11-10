@@ -31,7 +31,7 @@ hunter_add_version(
     URL
     "https://core.2gis.one/hunter/uniassert-0.0.1.tar.bz2"
     SHA1
-    70cf207e29ad1f2de3a0b946e5199fb2d250cf06
+    5c210a019141a50fe90b6893969ede90fb1b56b1
 )
 
 message(STATUS ${HUNTER_uniassert_VERSION})
