@@ -34,10 +34,6 @@ hunter_add_version(
     70cf207e29ad1f2de3a0b946e5199fb2d250cf06
 )
 
-hunter_cmake_args(
-    uniassert
-)
-
 message(STATUS ${HUNTER_uniassert_VERSION})
 string(COMPARE EQUAL "${HUNTER_uniassert_VERSION}" "FROM_LOCAL_PATH" test_hunter_package_version)
 message(STATUS "HUNTER_uniassert_LOCAL_DIR :: ${HUNTER_uniassert_LOCAL_DIR}")
