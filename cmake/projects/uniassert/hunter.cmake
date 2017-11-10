@@ -27,7 +27,7 @@ hunter_add_version(
     PACKAGE_NAME
     uniassert
     VERSION
-    "0.0.1-draft"
+    "0.0.1"
     URL
     "https://core.2gis.one/hunter/uniassert-0.0.1.tar.bz2"
     SHA1
