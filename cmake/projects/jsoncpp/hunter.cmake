@@ -64,18 +64,22 @@ hunter_cmake_args(
         JSONCPP_WITH_CMAKE_PACKAGE=ON
 )
 
-message(STATUS ${HUNTER_jsoncpp_VERSION})
-string(COMPARE EQUAL "${HUNTER_jsoncpp_VERSION}" "FROM_LOCAL_PATH" test_hunter_package_version)
-message(STATUS "HUNTER_jsoncpp_LOCAL_DIR :: ${HUNTER_jsoncpp_LOCAL_DIR}")
+string(COMPARE EQUAL "${HUNTER_jsoncpp_VERSION}" "FROM_LOCAL_PATH" hunter_package_local)
 
-if(test_hunter_package_version)
+if(hunter_package_version)
+  set(JSONCPP_FROM_LOCAL 1)
   set(JSONCPP_ROOT ${HUNTER_jsoncpp_LOCAL_DIR})
+  set(JSONCPP_INCLUDE "${HUNTER_jsoncpp_LOCAL_DIR}/jsoncpp/include/")
+  get_filename_component(SUBDIRECTORY_ABS ${JSONCPP_ROOT} ABSOLUTE)
+  file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
+  add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/jsoncpp")
 else(test_hunter_package_version)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake) # use scheme for cmake projects
 
   hunter_cacheable(jsoncpp)
   hunter_download(PACKAGE_NAME jsoncpp)
+  set(JSONCPP_INCLUDE "${JSONCPP_ROOT}/jsoncpp/include/")
 endif()
 
-make_symlink("${JSONCPP_ROOT}/include/json" "${CMAKE_CURRENT_BINARY_DIR}/include/jsoncpp/json")
+make_symlink("${JSONCPP_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/jsoncpp/json")
