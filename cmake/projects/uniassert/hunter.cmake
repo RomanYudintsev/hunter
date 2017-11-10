@@ -23,6 +23,17 @@ hunter_add_version(
     a78cabff03a17b257e2217a504c3e45318a0122e
 )
 
+hunter_add_version(
+    PACKAGE_NAME
+    uniassert
+    VERSION
+    "0.0.1-draft"
+    URL
+    "https://core.2gis.one/hunter/uniassert-0.0.1.tar.bz2"
+    SHA1
+    70cf207e29ad1f2de3a0b946e5199fb2d250cf06
+)
+
 hunter_cmake_args(
     uniassert
 )
