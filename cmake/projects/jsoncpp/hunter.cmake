@@ -69,7 +69,7 @@ string(COMPARE EQUAL "${HUNTER_jsoncpp_VERSION}" "FROM_LOCAL_PATH" hunter_packag
 if(hunter_package_local)
   set(JSONCPP_FROM_LOCAL 1)
   set(JSONCPP_ROOT ${HUNTER_jsoncpp_LOCAL_DIR})
-  set(JSONCPP_INCLUDE "${HUNTER_jsoncpp_LOCAL_DIR}/jsoncpp/include/json")
+  set(JSONCPP_INCLUDE "${HUNTER_jsoncpp_LOCAL_DIR}/include/json")
   get_filename_component(SUBDIRECTORY_ABS ${JSONCPP_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
   add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/jsoncpp")
