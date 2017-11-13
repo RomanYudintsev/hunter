@@ -45,16 +45,16 @@ hunter_add_version(
     e593e9935f3c764d53e56e4b61e93a13b516aa5f
 )
 
-string(COMPARE EQUAL "${HUNTER_uniassert_VERSION}" "FROM_LOCAL_PATH" hunter_package_version)
+string(COMPARE EQUAL "${HUNTER_uniassert_VERSION}" "FROM_LOCAL_PATH" hunter_package_local)
 
-if(hunter_package_version)
+if(hunter_package_local)
   set(UNIASSERT_FROM_LOCAL 1)
   set(UNIASSERT_ROOT ${HUNTER_uniassert_LOCAL_DIR})
   set(UNIASSERT_INCLUDE "${HUNTER_uniassert_LOCAL_DIR}")
   get_filename_component(SUBDIRECTORY_ABS ${UNIASSERT_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
   add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/uniassert")
-else(test_hunter_package_version)
+else(hunter_package_local)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake) # use scheme for cmake projects
 
