@@ -54,7 +54,6 @@ if(hunter_package_version)
   get_filename_component(SUBDIRECTORY_ABS ${UNIASSERT_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
   add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/uniassert")
-  add_library(GTest::gtest ALIAS gtest )
 else(test_hunter_package_version)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake) # use scheme for cmake projects
