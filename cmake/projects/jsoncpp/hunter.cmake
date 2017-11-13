@@ -66,14 +66,14 @@ hunter_cmake_args(
 
 string(COMPARE EQUAL "${HUNTER_jsoncpp_VERSION}" "FROM_LOCAL_PATH" hunter_package_local)
 
-if(hunter_package_version)
+if(hunter_package_local)
   set(JSONCPP_FROM_LOCAL 1)
   set(JSONCPP_ROOT ${HUNTER_jsoncpp_LOCAL_DIR})
   set(JSONCPP_INCLUDE "${HUNTER_jsoncpp_LOCAL_DIR}/jsoncpp/include/json")
   get_filename_component(SUBDIRECTORY_ABS ${JSONCPP_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
   add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/jsoncpp")
-else(test_hunter_package_version)
+else(hunter_package_local)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake) # use scheme for cmake projects
 
