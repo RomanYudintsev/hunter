@@ -52,7 +52,7 @@ hunter_add_version(
     75a05fcc928ed52e1eeb93f07a1c78a7890860c0
 )
 
-string(COMPARE EQUAL "${HUNTER_jsoncpp_VERSION}" "FROM_LOCAL_PATH" hunter_package_local)
+string(COMPARE EQUAL "${HUNTER_zlib_VERSION}" "FROM_LOCAL_PATH" hunter_package_local)
 
 if(hunter_package_local)
   set(JSONCPP_FROM_LOCAL 1)
