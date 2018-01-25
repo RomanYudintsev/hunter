@@ -29,5 +29,5 @@ else(hunter_package_local)
   set(ZSTD_INCLUDE "${ZSTD_ROOT}")
 endif()
 
-make_symlink("${ZSTD_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/zstd")
+make_symlink("${ZSTD_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/zstd/lib")
 
