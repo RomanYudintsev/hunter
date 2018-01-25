@@ -68,7 +68,7 @@ else(hunter_package_local)
   hunter_pick_scheme(DEFAULT url_sha1_cmake)
   hunter_cacheable(ZLib)
   hunter_download(PACKAGE_NAME ZLib)
-  set(ZLIB_INCLUDE "${ZLib_ROOT}")
+  set(ZLIB_INCLUDE "${ZLIB_ROOT}")
 endif()
 
 make_symlink("${ZLIB_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/ZLib")
