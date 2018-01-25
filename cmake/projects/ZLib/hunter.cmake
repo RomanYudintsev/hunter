@@ -6,7 +6,9 @@
 include(hunter_add_version)
 include(hunter_cacheable)
 include(hunter_download)
+include(hunter_local)
 include(hunter_pick_scheme)
+include(hunter_cmake_args)
 
 hunter_add_version(
     PACKAGE_NAME
