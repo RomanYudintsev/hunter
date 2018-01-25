@@ -17,7 +17,7 @@ string(COMPARE EQUAL "${HUNTER_zstd_VERSION}" "FROM_LOCAL_PATH" hunter_package_l
 if(hunter_package_local)
   set(ZSTD_FROM_LOCAL 1)
   set(ZSTD_ROOT ${HUNTER_zstd_LOCAL_DIR})
-  set(ZSTD_INCLUDE "${HUNTER_zstd_LOCAL_DIR}")
+  set(ZSTD_INCLUDE "${HUNTER_zstd_LOCAL_DIR}/lib ${HUNTER_zstd_LOCAL_DIR}/lib/common")
   get_filename_component(SUBDIRECTORY_ABS ${ZSTD_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
   add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/zstd")
