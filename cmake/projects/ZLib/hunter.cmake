@@ -12,7 +12,7 @@ include(hunter_cmake_args)
 
 hunter_add_version(
     PACKAGE_NAME
-    ZLIB
+    ZLib
     VERSION
     "1.2.8-p3"
     URL
@@ -23,7 +23,7 @@ hunter_add_version(
 
 hunter_add_version(
     PACKAGE_NAME
-    ZLIB
+    ZLib
     VERSION
     "1.2.8-p2"
     URL
@@ -34,7 +34,7 @@ hunter_add_version(
 
 hunter_add_version(
     PACKAGE_NAME
-    ZLIB
+    ZLib
     VERSION
     "1.2.8-hunter-1"
     URL
@@ -45,7 +45,7 @@ hunter_add_version(
 
 hunter_add_version(
     PACKAGE_NAME
-    ZLIB
+    ZLib
     VERSION
     "1.2.8-hunter"
     URL
@@ -54,22 +54,22 @@ hunter_add_version(
     75a05fcc928ed52e1eeb93f07a1c78a7890860c0
 )
 
-string(COMPARE EQUAL "${HUNTER_zlib_VERSION}" "FROM_LOCAL_PATH" hunter_package_local)
+string(COMPARE EQUAL "${HUNTER_ZLib_VERSION}" "FROM_LOCAL_PATH" hunter_package_local)
 
 if(hunter_package_local)
   set(ZLIB_FROM_LOCAL 1)
-  set(ZLIB_ROOT ${HUNTER_zlib_LOCAL_DIR})
-  set(ZLIB_INCLUDE "${HUNTER_zlib_LOCAL_DIR}")
+  set(ZLIB_ROOT ${HUNTER_ZLib_LOCAL_DIR})
+  set(ZLIB_INCLUDE "${HUNTER_ZLib_LOCAL_DIR}")
   get_filename_component(SUBDIRECTORY_ABS ${ZLIB_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
   add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}")
 else(hunter_package_local)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake)
-  hunter_cacheable(ZLIB)
-  hunter_download(PACKAGE_NAME ZLIB)
-  set(ZLIB_INCLUDE "${ZLIB_ROOT}")
+  hunter_cacheable(ZLib)
+  hunter_download(PACKAGE_NAME ZLib)
+  set(ZLIB_INCLUDE "${ZLib_ROOT}")
 endif()
 
-make_symlink("${ZLIB_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/zlib")
+make_symlink("${ZLIB_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/ZLib")
 

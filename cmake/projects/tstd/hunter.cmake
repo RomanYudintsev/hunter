@@ -24,7 +24,7 @@ hunter_add_version(
 )
 
 
-string(COMPARE EQUAL "${HUNTER_unicore_VERSION}" "FROM_LOCAL_PATH" hunter_package_local)
+string(COMPARE EQUAL "${HUNTER_tstd_VERSION}" "FROM_LOCAL_PATH" hunter_package_local)
 
 if(hunter_package_local)
   set(TSTD_FROM_LOCAL 1)
