@@ -19,7 +19,7 @@ if(hunter_package_local)
   set(LZMA_INCLUDE "${HUNTER_Lzma_LOCAL_DIR}/sdk/C")
   get_filename_component(SUBDIRECTORY_ABS ${LZMA_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
-  add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/Lzma")
+  add_subdirectory("${FOLDER}" "${CMAKE_BINARY_DIR}/libs/Lzma")
 else(hunter_package_local)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake)
@@ -28,5 +28,5 @@ else(hunter_package_local)
   set(LZMA_INCLUDE "${LZMA_ROOT}")
 endif()
 
-make_symlink("${LZMA_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/Lzma")
+make_symlink("${LZMA_INCLUDE}" "${CMAKE_BINARY_DIR}/include/Lzma")
 

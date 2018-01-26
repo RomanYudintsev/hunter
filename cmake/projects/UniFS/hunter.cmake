@@ -18,7 +18,7 @@ if(hunter_package_local)
   set(UNIFS_INCLUDE "${HUNTER_UniFS_LOCAL_DIR}")
   get_filename_component(SUBDIRECTORY_ABS ${UNIFS_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
-  add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/UniFS")
+  add_subdirectory("${FOLDER}" "${CMAKE_BINARY_DIR}/libs/UniFS")
 else(hunter_package_local)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake)
@@ -27,5 +27,5 @@ else(hunter_package_local)
   set(UNIFS_INCLUDE "${UNIFS_ROOT}")
 endif()
 
-make_symlink("${UNIFS_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/UniFS")
+make_symlink("${UNIFS_INCLUDE}" "${CMAKE_BINARY_DIR}/include/UniFS")
 

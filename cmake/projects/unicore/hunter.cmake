@@ -32,7 +32,7 @@ if(hunter_package_local)
   set(UNICORE_INCLUDE "${HUNTER_unicore_LOCAL_DIR}")
   get_filename_component(SUBDIRECTORY_ABS ${UNICORE_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
-  add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/unicore")
+  add_subdirectory("${FOLDER}" "${CMAKE_BINARY_DIR}/libs/unicore")
 else(hunter_package_local)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake) # use scheme for cmake projects
@@ -42,4 +42,4 @@ else(hunter_package_local)
   set(UNICORE_INCLUDE "${UNICORE_ROOT}/include/unicore")
 endif()
 
-make_symlink("${UNICORE_ROOT}" "${CMAKE_CURRENT_BINARY_DIR}/include/unicore")
+make_symlink("${UNICORE_ROOT}" "${CMAKE_BINARY_DIR}/include/unicore")

@@ -53,7 +53,7 @@ if(hunter_package_local)
   set(UNIASSERT_INCLUDE "${HUNTER_uniassert_LOCAL_DIR}")
   get_filename_component(SUBDIRECTORY_ABS ${UNIASSERT_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
-  add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/uniassert")
+  add_subdirectory("${FOLDER}" "${CMAKE_BINARY_DIR}/libs/uniassert")
 else(hunter_package_local)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake) # use scheme for cmake projects
@@ -63,4 +63,4 @@ else(hunter_package_local)
   set(UNIASSERT_INCLUDE "${UNIASSERT_ROOT}/include/uniassert")
 endif()
 
-make_symlink("${UNIASSERT_ROOT}" "${CMAKE_CURRENT_BINARY_DIR}/include/uniassert")
+make_symlink("${UNIASSERT_ROOT}" "${CMAKE_BINARY_DIR}/include/uniassert")

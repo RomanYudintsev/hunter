@@ -62,7 +62,7 @@ if(hunter_package_local)
   set(ZLIB_INCLUDE "${HUNTER_ZLib_LOCAL_DIR}")
   get_filename_component(SUBDIRECTORY_ABS ${ZLIB_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
-  add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/ZLib")
+  add_subdirectory("${FOLDER}" "${CMAKE_BINARY_DIR}/libs/ZLib")
 else(hunter_package_local)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake)
@@ -71,5 +71,5 @@ else(hunter_package_local)
   set(ZLIB_INCLUDE "${ZLIB_ROOT}")
 endif()
 
-make_symlink("${ZLIB_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/ZLib")
+make_symlink("${ZLIB_INCLUDE}" "${CMAKE_BINARY_DIR}/include/ZLib")
 

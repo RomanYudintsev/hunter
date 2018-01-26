@@ -19,7 +19,7 @@ if(hunter_package_local)
   set(ADWPACK_INCLUDE "${HUNTER_adwpack_LOCAL_DIR}/")
   get_filename_component(SUBDIRECTORY_ABS ${ADWPACK_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
-  add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/adwpack")
+  add_subdirectory("${FOLDER}" "${CMAKE_BINARY_DIR}/libs/adwpack")
 else(hunter_package_local)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake)
@@ -28,5 +28,5 @@ else(hunter_package_local)
   set(ADWPACK_INCLUDE "${ADWPACK_ROOT}")
 endif()
 
-make_symlink("${ADWPACK_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/adwpack")
+make_symlink("${ADWPACK_INCLUDE}" "${CMAKE_BINARY_DIR}/include/adwpack")
 

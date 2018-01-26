@@ -36,7 +36,7 @@ if(hunter_package_local)
   set(CRYPTOPP_INCLUDE "${HUNTER_Cryptopp_LOCAL_DIR}/")
   get_filename_component(SUBDIRECTORY_ABS ${CRYPTOPP_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
-  add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/Cryptopp")
+  add_subdirectory("${FOLDER}" "${CMAKE_BINARY_DIR}/libs/Cryptopp")
 else(hunter_package_local)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake)
@@ -45,5 +45,5 @@ else(hunter_package_local)
   set(CRYPTOPP_INCLUDE "${CRYPTOPP_ROOT}")
 endif()
 
-make_symlink("${CRYPTOPP_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/Cryptopp")
+make_symlink("${CRYPTOPP_INCLUDE}" "${CMAKE_BINARY_DIR}/include/Cryptopp")
 

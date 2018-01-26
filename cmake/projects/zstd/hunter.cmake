@@ -20,7 +20,7 @@ if(hunter_package_local)
   set(ZSTD_INCLUDE "${HUNTER_zstd_LOCAL_DIR}/lib")
   get_filename_component(SUBDIRECTORY_ABS ${ZSTD_ROOT} ABSOLUTE)
   file(RELATIVE_PATH FOLDER ${CMAKE_CURRENT_SOURCE_DIR} ${SUBDIRECTORY_ABS})
-  add_subdirectory("${FOLDER}" "${CMAKE_CURRENT_BINARY_DIR}/libs/zstd")
+  add_subdirectory("${FOLDER}" "${CMAKE_BINARY_DIR}/libs/zstd")
 else(hunter_package_local)
   # Pick a download scheme
   hunter_pick_scheme(DEFAULT url_sha1_cmake)
@@ -29,5 +29,5 @@ else(hunter_package_local)
   set(ZSTD_INCLUDE "${ZSTD_ROOT}")
 endif()
 
-make_symlink("${ZSTD_INCLUDE}" "${CMAKE_CURRENT_BINARY_DIR}/include/zstd")
+make_symlink("${ZSTD_INCLUDE}" "${CMAKE_BINARY_DIR}/include/zstd")
 
