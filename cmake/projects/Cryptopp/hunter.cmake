@@ -16,11 +16,12 @@ hunter_cmake_args(
     DISABLE_ASM=1 DISABLE_SSSE3=1
 )
 
-set(DISABLE_ASM ON BOOL "Disable ASM")
-set(DISABLE_SSSE3 ON BOOL "Disable SSSE3")
+set(DISABLE_ASM ON)
+set(DISABLE_SSSE3 ON)
 
-set(BUILD_STATIC OFF BOOL "Build static library")
-set(BUILD_SHARED OFF BOOL "Build shared library")
+set(BUILD_STATIC OFF)
+set(BUILD_SHARED OFF)
+set(BUILD_INTERFACE ON)
 
 string(COMPARE EQUAL "${HUNTER_Cryptopp_VERSION}" "FROM_LOCAL_PATH" hunter_package_local)
 
