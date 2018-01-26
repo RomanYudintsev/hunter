@@ -20,7 +20,7 @@ set(DISABLE_ASM ON BOOL "Disable ASM")
 set(DISABLE_SSSE3 ON BOOL "Disable SSSE3")
 
 set(BUILD_STATIC OFF BOOL "Build static library")
-set(BUILD_SHARED ON BOOL "Build shared library")
+set(BUILD_SHARED OFF BOOL "Build shared library")
 
 string(COMPARE EQUAL "${HUNTER_Cryptopp_VERSION}" "FROM_LOCAL_PATH" hunter_package_local)
 
